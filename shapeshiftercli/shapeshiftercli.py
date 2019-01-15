@@ -75,7 +75,7 @@ def run(args, parser):
               "Either choose a different output file type or remove the --transpose flag")
         sys.exit()
 
-    if not ("==" in filters or "!=" in filters or "<" in filters or ">" in filters or "<=" in filters or ">=" in filters):
+    if filters not None and not ("==" in filters or "!=" in filters or "<" in filters or ">" in filters or "<=" in filters or ">=" in filters):
         print("Error: Filter must be an expression involving an operator such as '==' or '<'. "
               "If you simply want to include specific columns in the output, try using the --columns flag")
         sys.exit()
