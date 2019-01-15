@@ -9,7 +9,7 @@ setup(
     entry_points = {
         "console_scripts": ['shapeshift = shapeshiftercli.shapeshiftercli:main']
         },
-    install_requires=['shapeshifter','pandas', 'argparse', 'pyarrow'],
+    install_requires=['shapeshifter','pandas'],
     version=open('VERSION').read(),
     license='MIT',
     description='A command-line tool for transforming large data sets',
