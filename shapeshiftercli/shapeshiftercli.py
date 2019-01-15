@@ -128,5 +128,5 @@ def main():
     args.func(args, parser)
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
