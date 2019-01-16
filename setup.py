@@ -7,11 +7,11 @@ setup(
     author_email='stephen_piccolo@byu.edu',
     packages=find_packages(),
     entry_points = {
-        "console_scripts": ['shapeshift = shapeshiftercli.shapeshiftercli:main']
+        "console_scripts": ['shapeshift = shapeshiftercli.shapeshiftercli:main'] #add one for merge?
         },
     install_requires=['shapeshifter','pandas'],
     version=open('VERSION').read(),
     license='MIT',
     description='A command-line tool for transforming large data sets',
-    # long_description=open('README.md').read(),
+    long_description=open('README.md').read(),
 )
