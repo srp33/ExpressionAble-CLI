@@ -78,6 +78,11 @@ Applying filters during the transformation uses the `--filter` flag, followed by
 Syntax for such a query uses basic Python logical syntax, as shown by the following example:
 `--filter "ColumnName1 > 12.5 and (ColumnName2 == 'x' or ColumnName2 =='y')"`  
 
+Applying filters means that only those columns that are filtered on (in the above example, ColumnName1 and ColumnName2)
+will appear in the output file. If you wish to include additional columns, you can do so with the `--columns` flag 
+followed by a list of comma-separated column names. If you wish to include all columns in the output, you can simply
+use the `--all_columns` flag.
+
 ## Currently Supported Formats
 #### Input Formats:
 * CSV
@@ -110,3 +115,9 @@ Syntax for such a query uses basic Python logical syntax, as shown by the follow
 * GCT 
 * RMarkdown 
 * JupyterNotebook
+
+## Future Formats to Support
+We are working hard to expand ShapeShifter to work with even more file formats! Expect the following formats to be 
+included in future releases:
+* Fixed-width files (fwf)
+* Genomic Data Commons clinical XML
