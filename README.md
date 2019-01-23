@@ -7,7 +7,7 @@ From the command-line you can easily take advantage of ShapeShifter's features, 
 * Option to gzip resulting data sets, as well as the ability to read gzipped files.
 
 And coming soon:
-* Merging multiple data files of various types into a single file.
+* Merging multiple data files of various types into a single file. Type `shapeshiftmerge --help` or `ssm --help` to help test it out!
 
 ## Install
 
@@ -16,7 +16,7 @@ pip3 install shapeshifter-cli
 ```
 
 ## Basic Use
-To view instructions for use at any time, simply type the command `shapeshift --help` into the terminal at any time.
+To view instructions for use at any time, simply type the command `shapeshift --help` or `ss --help` into the terminal at any time.
 Doing so will bring up the following:
 ```bash
 $ shapeshift --help
