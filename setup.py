@@ -9,8 +9,8 @@ setup(
     entry_points = {
         "console_scripts": ['shapeshift = shapeshiftercli.shapeshiftercli:main',
                             'ss = shapeshiftercli.shapeshiftercli:main',
-                            'shapeshiftmerge = shapeshiftercli.mergecli:main',
-                            'ssm = shapeshiftercli.mergecli:main'] #add one for merge?
+                            'shapeshiftmerge = mergecli.mergecli:main',
+                            'ssm = mergecli.mergecli:main']
         },
     install_requires=['shapeshifter','pandas'],
     version=open('VERSION').read().strip(),

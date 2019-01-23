@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from shapeshiftercli.mergecli import main
+from mergecli.mergecli import main
 
 if __name__ == '__main__':
     main()
