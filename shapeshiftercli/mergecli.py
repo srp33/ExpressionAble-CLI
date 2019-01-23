@@ -52,3 +52,7 @@ def main():
                              "Available choices are: " + ", ".join(supported_output_files),
                         choices=supported_output_files, metavar='File_Type')
     parser.add_argument("-g", "--gzip", help="Gzips the output file", action="store_true")
+
+    parser.set_defaults(func=execute_merge)
+    args = parser.parse_args()
+    args.func(args, parser)
