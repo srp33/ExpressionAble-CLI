@@ -43,9 +43,9 @@ def main():
     parser = argparse.ArgumentParser(description="Merge data files of various types into a single file!")
     supported_output_files = ["CSV", "TSV", "JSON", "Excel", "HDF5", "Parquet", "MsgPack", "Stata",
                               "Pickle", "SQLite", "ARFF", "GCT", "RMarkdown", "JupyterNotebook"]
-    parser.add_argument("-i", "input_files", nargs="+", help="List of files that will be merged together. "
+    parser.add_argument("-i", "--input_files", nargs="+", help="List of files that will be merged together. "
                                                              "Files must have appropriate extensions to be recognized properly.")
-    parser.add_argument("-o", "output_file", help="File path to which results are exported")
+    parser.add_argument("-o", "--output_file", help="File path to which results are exported")
     parser.add_argument("-t", "--output_file_type",
                         help="Type of file to which results are exported. If not specified, "
                              "file type will be determined by the file extension given. "
