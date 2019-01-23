@@ -8,7 +8,9 @@ setup(
     packages=find_packages(),
     entry_points = {
         "console_scripts": ['shapeshift = shapeshiftercli.shapeshiftercli:main',
-                            'ss = shapeshiftercli.shapeshiftercli:main'] #add one for merge?
+                            'ss = shapeshiftercli.shapeshiftercli:main',
+                            'shapeshiftmerge = shapeshiftercli.mergecli.main',
+                            'ssm = shapeshiftercli.mergecli.main'] #add one for merge?
         },
     install_requires=['shapeshifter','pandas'],
     version=open('VERSION').read().strip(),
