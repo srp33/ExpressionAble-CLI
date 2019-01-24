@@ -5,11 +5,11 @@ from shapeshifter.errors import ColumnNotFoundError
 from shapeshifter import ShapeShifter
 import argparse
 
-def execute_merge(input_files, output_path, out_file_type=None, gzip_results=False, on=None, how='inner'):
+def execute_merge(args):
     try:
-        ss = ShapeShifter(input_files[0])
-        ss.merge_files(input_files[1:], out_file_path=output_path, out_file_type=out_file_type, gzip_results=gzip_results,
-                       on=on, how=how)
+        ss = ShapeShifter(args.input_files[0])
+        ss.merge_files(args.input_files[1:], out_file_path=args.output_file, out_file_type=args.output_file_type, gzip_results=args.gzip,
+                       on=args.on_column, how=args.how)
     except pyarrow.lib.ArrowIOError as e:
             print("Error: " + str(e))
     except pd.core.computation.ops.UndefinedVariableError as e:
@@ -52,7 +52,9 @@ def main():
                              "Available choices are: " + ", ".join(supported_output_files),
                         choices=supported_output_files, metavar='File_Type')
     parser.add_argument("-g", "--gzip", help="Gzips the output file", action="store_true")
-
+    parser.add_argument("-c", "--on_column", help="Merge files on a specific column", default=None)
+    parser.add_argument("--how", help="Type of merge to perform. Options are left, right, inner, or outer,"
+                                      "with outer being default behavior.", default="inner")
     parser.set_defaults(func=execute_merge)
     args = parser.parse_args()
-    args.func(args, parser)
+    args.func(args)
