@@ -1,5 +1,5 @@
 # shapeshifter-cli
-The official command-line interface for the [ShapeShifter](https://github.com/srp33/ShapeShifter) Python module.
+The official command-line interface for the [shapeshifter](https://github.com/srp33/ShapeShifter) Python module.
 From the command-line you can easily take advantage of ShapeShifter's features, such as:
 * Transformation of tabular data sets from one format to another.
 * Querying large data sets to filter out useful data.
