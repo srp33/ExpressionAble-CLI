@@ -53,8 +53,8 @@ def execute_shapeshifter(allCols, args, colList, gzip, inFileType, indexCol, isT
         print("Error: " + str(e))
     except ColumnNotFoundError as e:
         print(
-            "Warning: the following columns requested were not found and therefore not included in the output: " + str(
-                e))
+            "Error: columns you requested or tried to filter on were not found in the file and the following"
+            " error was caught: " + str(e))
 
 
 def run(args, parser):
