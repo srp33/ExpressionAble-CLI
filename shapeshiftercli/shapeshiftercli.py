@@ -121,8 +121,8 @@ def main():
                         help="Includes all columns in the output file. Overrides the \"--columns\" flag",
                         action="store_true")
     parser.add_argument("-g", "--gzip", help="Gzips the output file", action="store_true")
-    parser.add_argument("-s", "--set_index", default="Sample", help="Sets the given column to become the index column, "
-                                                                    "where appropriate. If not set, the default index will be 'Sample'")
+    parser.add_argument("-s", "--set_index", default=None, help="Sets the given column to become the index column, "
+                                                                    "where appropriate.")
     parser.set_defaults(func=run)
     args = parser.parse_args()
     args.func(args, parser)
