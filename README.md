@@ -7,7 +7,7 @@ From the command-line you can easily take advantage of ExpressionAble's features
 * Option to gzip resulting data sets, as well as the ability to read gzipped files.
 
 And coming soon:
-* Merging multiple data files of various types into a single file. Type `shapeshiftmerge --help` or `ssm --help` to help test it out!
+* Merging multiple data files of various types into a single file. Type `expressionablemerge --help` or `merge --help` to help test it out!
 
 ## Install
 
