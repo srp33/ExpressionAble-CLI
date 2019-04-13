@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
-from shapeshifter.errors import ColumnNotFoundError
-from shapeshifter import ShapeShifter
+from expressionable.errors import ColumnNotFoundError
+from expressionable import ExpressionAble
 import argparse
 import sys
 import pandas as pd
@@ -22,10 +22,10 @@ def parse_columns(columns):
     return colList
 
 
-def execute_shapeshifter(allCols, args, colList, gzip, inFileType, indexCol, isTransposed, outFileType, filters):
+def execute_expressionable(allCols, args, colList, gzip, inFileType, indexCol, isTransposed, outFileType, filters):
     try:
-        ss = ShapeShifter(args.input_file, inFileType)
-        ss.export_filter_results(args.output_file, outFileType, filters=filters, columns=colList, transpose=isTransposed,
+        ea = ExpressionAble(args.input_file, inFileType)
+        ea.export_filter_results(args.output_file, outFileType, filters=filters, columns=colList, transpose=isTransposed,
                                  include_all_columns=allCols, gzip_results=gzip, index=indexCol)
     except pyarrow.lib.ArrowIOError as e:
         print("Error: " + str(e))
@@ -86,7 +86,7 @@ def run(args, parser):
         gzip = True
 
 
-    execute_shapeshifter(allCols, args, colList, gzip, inFileType, indexCol, isTransposed, outFileType, filters)
+    execute_expressionable(allCols, args, colList, gzip, inFileType, indexCol, isTransposed, outFileType, filters)
 
 
 def main():

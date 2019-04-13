@@ -1,6 +1,6 @@
 include VERSION
 include *.py
-include shapeshiftercli/*
+include expressionablecli/*
 include mergecli/*
 include MANIFEST.in
 include LICENSE

@@ -1,14 +1,14 @@
 #! /usr/bin/env python
 import pyarrow
 import pandas as pd
-from shapeshifter.errors import ColumnNotFoundError
-from shapeshifter import ShapeShifter
+from expressionable.errors import ColumnNotFoundError
+from expressionable import ExpressionAble
 import argparse
 
 def execute_merge(args):
     try:
-        ss = ShapeShifter(args.input_files[0])
-        ss.merge_files(args.input_files[1:], out_file_path=args.output_file, out_file_type=args.output_file_type, gzip_results=args.gzip,
+        ea = ExpressionAble(args.input_files[0])
+        ea.merge_files(args.input_files[1:], out_file_path=args.output_file, out_file_type=args.output_file_type, gzip_results=args.gzip,
                        on=args.on_column, how=args.how)
     except pyarrow.lib.ArrowIOError as e:
             print("Error: " + str(e))

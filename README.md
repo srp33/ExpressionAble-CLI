@@ -1,6 +1,6 @@
-# shapeshifter-cli
-The official command-line interface for the [shapeshifter](https://github.com/srp33/ShapeShifter) Python module.
-From the command-line you can easily take advantage of ShapeShifter's features, such as:
+# expressionable-cli
+The official command-line interface for the [expressionable](https://github.com/srp33/expressionable) Python module.
+From the command-line you can easily take advantage of ExpressionAble's features, such as:
 * Transformation of tabular data sets from one format to another.
 * Querying large data sets to filter out useful data.
 * Selection of additional columns/features to include in the resulting data set.
@@ -12,15 +12,15 @@ And coming soon:
 ## Install
 
 ```bash
-pip3 install shapeshifter-cli
+pip3 install expressionable-cli
 ```
 
 ## Basic Use
-To view instructions for use at any time, simply type the command `shapeshift --help` or `ss --help` into the terminal at any time.
+To view instructions for use at any time, simply type the command `expressionable --help` or `ea --help` into the terminal at any time.
 Doing so will bring up the following:
 ```bash
-$ shapeshift --help
-usage: shapeshift [-h] [-i File_Type] [-o File_Type] [-t] [-f "FILTER"]
+$ expressionable --help
+usage: expressionable [-h] [-i File_Type] [-o File_Type] [-t] [-f "FILTER"]
                   [-c COLUMNS] [-a] [-g] [-s SET_INDEX]
                   input_file output_file
 
@@ -64,12 +64,12 @@ optional arguments:
                         be 'Sample'
 
 ```
-There are only two required arguments when using the `shapeshift` command: the path to the file you wish to read,
+There are only two required arguments when using the `expressionable` command: the path to the file you wish to read,
 and the path to a file you wish to produce. For example, if you had an Excel file called "input_file.xlsx" and you 
 simply wanted to convert it to a TSV file called "output_file.tsv", you would enter 
-`shapeshift input_file.xlsx output_file.tsv` into the terminal to execute the conversion.
+`expressionable input_file.xlsx output_file.tsv` into the terminal to execute the conversion.
 
-ShapeShifter automatically infers both the format of the input file and the format of the file you wish to create, based
+ExpressionAble automatically infers both the format of the input file and the format of the file you wish to create, based
 on the extension on the file path. If for some reason the extensions are irregular or missing, you can specify the 
 format of the input file using the `--input_file_type` flag, followed by the name of the file type,
 and specify the format of the output file using the `--output_file_type` flag, followed by the name of the file type.
@@ -117,7 +117,7 @@ use the `--all_columns` flag.
 * JupyterNotebook
 
 ## Future Formats to Support
-We are working hard to expand ShapeShifter to work with even more file formats! Expect the following formats to be 
+We are working hard to expand ExpressionAble to work with even more file formats! Expect the following formats to be 
 included in future releases:
 * Fixed-width files (fwf)
 * Genomic Data Commons clinical XML
