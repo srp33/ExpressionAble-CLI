@@ -22,11 +22,13 @@ def parse_columns(columns):
     return colList
 
 
-def execute_expressionable(allCols, args, colList, gzip, inFileType, indexCol, isTransposed, outFileType, filters):
+def execute_expressionable(allCols, base_input_file, colList, gzip, inFileType, indexCol, isTransposed, outFileType,
+                           filters, files_to_merge, merge_file_types, merge_on, merge_how):
     try:
-        ea = ExpressionAble(args.input_file, inFileType)
-        ea.export_filter_results(args.output_file, outFileType, filters=filters, columns=colList, transpose=isTransposed,
-                                 include_all_columns=allCols, gzip_results=gzip, index=indexCol)
+        ea = ExpressionAble(base_input_file, inFileType)
+        ea.export_filter_results(base_input_file, outFileType, filters=filters, columns=colList, transpose=isTransposed,
+                                 include_all_columns=allCols, gzip_results=gzip, index=indexCol, files_to_merge=files_to_merge,
+                                 merge_file_types=merge_file_types, merge_on=merge_on, merge_how=merge_how)
     except pyarrow.lib.ArrowIOError as e:
         print("Error: " + str(e))
     except pd.core.computation.ops.UndefinedVariableError as e:
@@ -58,7 +60,21 @@ def execute_expressionable(allCols, args, colList, gzip, inFileType, indexCol, i
 
 
 def run(args, parser):
-    inFileType = args.input_file_type
+    base_input_file = args.input_files.split(",")[0]
+    if len(args.input_files.split(",") > 1):
+        files_to_merge = args.input_files.split(",")[1:]
+    else:
+        files_to_merge = None
+    if args.input_file_types != None:
+        inFileTypes = args.input_file_types.split(",")
+        base_input_file_type = inFileTypes[0]
+    else:
+        inFileTypes = None
+        base_input_file_type = None
+    if inFileTypes != None and len(inFileTypes) >1:
+        merge_file_types = inFileTypes[1:]
+    else:
+        merge_file_types = None
     outFileType = args.output_file_type
     isTransposed = args.transpose
     filters = args.filter
@@ -67,6 +83,8 @@ def run(args, parser):
     allCols = args.all_columns
     gzip = args.gzip
     indexCol = args.set_index
+    merge_on = args.merge_on
+    merge_how = args.how
 
     # Handle argparse errors and user failures
     # TODO disable transpose entirely?
@@ -86,22 +104,27 @@ def run(args, parser):
         gzip = True
 
 
-    execute_expressionable(allCols, args, colList, gzip, inFileType, indexCol, isTransposed, outFileType, filters)
+    execute_expressionable(allCols, base_input_file, colList, gzip, base_input_file_type, indexCol, isTransposed, outFileType,
+                           filters, files_to_merge, merge_file_types, merge_on, merge_how)
 
 
 def main():
     # TODO prevent flags from being used twice. What's the best way to do this?
+    # TODO add options for merge on and merge how
     parser = argparse.ArgumentParser(description="Import, filter, and transform data into a format of your choice!")
     supported_input_files = ["CSV", "TSV", "JSON", "Excel", "HDF5", "Parquet", "MsgPack", "Stata",
                              "Pickle", "SQLite", "ARFF", "GCT", "Kallisto", "GEO", "Salmon"]
     supported_output_files = ["CSV", "TSV", "JSON", "Excel", "HDF5", "Parquet", "MsgPack", "Stata",
                               "Pickle", "SQLite", "ARFF", "GCT", "RMarkdown", "JupyterNotebook"]
 
-    parser.add_argument("input_file", help="Data file to be imported, filtered, and/or transformed")
+    parser.add_argument("input_files", help="Data files to be imported, filtered, and/or transformed. If multiple files"
+                                            " are given, separated by commas and without spaces, the files will be "
+                                            "merged together before filtering occurs.")
     parser.add_argument("output_file", help="File path to which results are exported")
-    parser.add_argument("-i", "--input_file_type",
-                        help="Type of file to be imported. If not specified, file type will be "
-                             "determined by the file extension given. Available choices are: " +
+    parser.add_argument("-i", "--input_file_types",
+                        help="Types of file to be imported. These must correspond to the files given to the "
+                             "input_files argument. If not specified, file type will be "
+                             "determined by the file extensions given. Available choices are: " +
                              ", ".join(supported_input_files), metavar='File_Type')  # choices = supportedFiles,
     parser.add_argument("-o", "--output_file_type",
                         help="Type of file to which results are exported. If not specified, "
@@ -115,7 +138,7 @@ def main():
                         metavar="\"FILTER\"", action='store')
     parser.add_argument("-c", "--columns", action='store', default=[],
                         help="List of additional column names to include in the output "
-                             "file. Column names must be seperated by commas and without "
+                             "file. Column names must be separated by commas and without "
                              "spaces. For example: -c ColumnName1,ColumnName2,ColumnName3")
     parser.add_argument("-a", "--all_columns",
                         help="Includes all columns in the output file. Overrides the \"--columns\" flag",
@@ -123,6 +146,10 @@ def main():
     parser.add_argument("-g", "--gzip", help="Gzips the output file", action="store_true")
     parser.add_argument("-s", "--set_index", default=None, help="Sets the given column to become the index column, "
                                                                     "where appropriate.")
+    parser.add_argument("-m", "merge_on", type=str, help="If merging files, performs merge on the given column", default=None)
+    parser.add_argument("-h", "how", type=str, help="If merging files, sets how the merge will be performed. Default is 'inner',"
+                                          "but other options are 'outer', 'left', and 'right'.", default='inner')
+
     parser.set_defaults(func=run)
     args = parser.parse_args()
     args.func(args, parser)
