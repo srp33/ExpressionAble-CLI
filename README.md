@@ -58,8 +58,7 @@ optional arguments:
   -g, --gzip            Gzips the output file
   -s SET_INDEX, --set_index SET_INDEX
                         Sets the given column to become the index column,
-                        where appropriate. If not set, the default index will
-                        be 'Sample'
+                        where appropriate.
 
 ```
 There are only two required arguments when using the `expressionable` command: the path to the file you wish to read,
@@ -108,7 +107,7 @@ optional arguments:
   -c ON_COLUMN, --on_column ON_COLUMN
                         Merge files on a specific column
   --how HOW             Type of merge to perform. Options are left, right,
-                        inner, or outer,with outer being default behavior.
+                        inner, or outer, with inner being default behavior.
 ```
 
 
@@ -126,6 +125,9 @@ optional arguments:
 * SQLite
 * ARFF
 * GCT
+* GCTX
+* PDF
+* StarReads
 * Kallisto
 * GEO
 
