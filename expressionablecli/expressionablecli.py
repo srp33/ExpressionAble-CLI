@@ -93,7 +93,7 @@ def main():
     # TODO prevent flags from being used twice. What's the best way to do this?
     parser = argparse.ArgumentParser(description="Import, filter, and transform data into a format of your choice!")
     supported_input_files = ["CSV", "TSV", "JSON", "Excel", "HDF5", "Parquet", "MsgPack", "Stata",
-                             "Pickle", "SQLite", "ARFF", "GCT", "Kallisto", "GEO", "Salmon"]
+                             "Pickle", "SQLite", "ARFF", "GCT", "GCTX", "StarReads", "PDF", "Kallisto", "GEO", "Salmon"]
     supported_output_files = ["CSV", "TSV", "JSON", "Excel", "HDF5", "Parquet", "MsgPack", "Stata",
                               "Pickle", "SQLite", "ARFF", "GCT", "RMarkdown", "JupyterNotebook"]
 

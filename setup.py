@@ -13,7 +13,7 @@ setup(
                             'expressionablemerge = mergecli.mergecli:main',
                             'merge = mergecli.mergecli:main']
         },
-    install_requires=['expressionable','pandas'],
+    install_requires=['expressionable>=1.1','pandas'],
     version=open('VERSION').read().strip(),
     license='MIT',
     description='A command-line tool for transforming large data sets',

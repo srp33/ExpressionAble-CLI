@@ -54,7 +54,7 @@ def main():
     parser.add_argument("-g", "--gzip", help="Gzips the output file", action="store_true")
     parser.add_argument("-c", "--on_column", help="Merge files on a specific column", default=None)
     parser.add_argument("--how", help="Type of merge to perform. Options are left, right, inner, or outer,"
-                                      "with outer being default behavior.", default="inner")
+                                      " with inner being default behavior.", default="inner")
     parser.set_defaults(func=execute_merge)
     args = parser.parse_args()
     args.func(args)
