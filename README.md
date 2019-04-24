@@ -5,9 +5,7 @@ From the command-line you can easily take advantage of ExpressionAble's features
 * Querying large data sets to filter out useful data.
 * Selection of additional columns/features to include in the resulting data set.
 * Option to gzip resulting data sets, as well as the ability to read gzipped files.
-
-And coming soon:
-* Merging multiple data files of various types into a single file. Type `expressionablemerge --help` or `merge --help` to help test it out!
+* Merging multiple data files of various types into a single file. 
 
 ## Install
 
@@ -82,6 +80,37 @@ Applying filters means that only those columns that are filtered on (in the abov
 will appear in the output file. If you wish to include additional columns, you can do so with the `--columns` flag 
 followed by a list of comma-separated column names. If you wish to include all columns in the output, you can simply
 use the `--all_columns` flag.
+
+## Merging Files
+Typing `merge -h` or `eamerge -h` will bring up the help menu for information on how to merge data files of various types together.
+
+```bash
+~$ merge -h
+usage: merge [-h] [-i INPUT_FILES [INPUT_FILES ...]] [-o OUTPUT_FILE]
+             [-t File_Type] [-g] [-c ON_COLUMN] [--how HOW]
+
+Merge data files of various types into a single file!
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT_FILES [INPUT_FILES ...], --input_files INPUT_FILES [INPUT_FILES ...]
+                        List of files that will be merged together. Files must
+                        have appropriate extensions to be recognized properly.
+  -o OUTPUT_FILE, --output_file OUTPUT_FILE
+                        File path to which results are exported
+  -t File_Type, --output_file_type File_Type
+                        Type of file to which results are exported. If not
+                        specified, file type will be determined by the file
+                        extension given. Available choices are: CSV, TSV,
+                        JSON, Excel, HDF5, Parquet, MsgPack, Stata, Pickle,
+                        SQLite, ARFF, GCT, RMarkdown, JupyterNotebook
+  -g, --gzip            Gzips the output file
+  -c ON_COLUMN, --on_column ON_COLUMN
+                        Merge files on a specific column
+  --how HOW             Type of merge to perform. Options are left, right,
+                        inner, or outer,with outer being default behavior.
+```
+
 
 ## Currently Supported Formats
 #### Input Formats:
