@@ -7,9 +7,17 @@ import argparse
 
 def execute_merge(args):
     try:
-        ea = ExpressionAble(args.input_files[0])
-        ea.merge_files(args.input_files[1:], out_file_path=args.output_file, out_file_type=args.output_file_type, gzip_results=args.gzip,
-                       on=args.on_column, how=args.how)
+        if len(args.input_files_types) == 1:
+            ea = ExpressionAble(args.input_files[0], args.input_files_types[0])
+            types = args.input_files_types
+        elif len(args.input_files_types)>1:
+            ea = ExpressionAble(args.input_files[0], args.input_files_types[0])
+            types = args.input_files_types[1:]
+        else:
+            ea = ExpressionAble(args.input_files[0])
+            types = []
+        ea.merge_files(args.input_files[1:], out_file_path=args.output_file, files_to_merge_types=types,
+                       out_file_type=args.output_file_type, gzip_results=args.gzip, on=args.on_column, how=args.how)
     except pyarrow.lib.ArrowIOError as e:
             print("Error: " + str(e))
     except pd.core.computation.ops.UndefinedVariableError as e:
@@ -45,6 +53,8 @@ def main():
                               "Pickle", "SQLite", "ARFF", "GCT", "RMarkdown", "JupyterNotebook"]
     parser.add_argument("-i", "--input_files", nargs="+", help="List of files that will be merged together. "
                                                              "Files must have appropriate extensions to be recognized properly.")
+    parser.add_argument("-f", "input_files_types", default=[],
+                        help="list of file types corresponding to files_to_merge. If the list is empty, types will be inferred from file extensions. If the list has one value, that will be the type of every file in files_to_merge. If the list has the same number of items as files_to_merge, the types will correspond to the files in files_to_merge.")
     parser.add_argument("-o", "--output_file", help="File path to which results are exported")
     parser.add_argument("-t", "--output_file_type",
                         help="Type of file to which results are exported. If not specified, "

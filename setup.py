@@ -11,7 +11,8 @@ setup(
                             'ea = expressionablecli.expressionablecli:main',
                             'eable = expressionablecli.expressionablecli:main',
                             'expressionablemerge = mergecli.mergecli:main',
-                            'merge = mergecli.mergecli:main']
+                            'merge = mergecli.mergecli:main',
+                            'eamerge = mergecli.mergecli:main']
         },
     install_requires=['expressionable>=1.2','pandas'],
     version=open('VERSION').read().strip(),
