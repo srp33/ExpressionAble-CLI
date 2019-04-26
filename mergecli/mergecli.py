@@ -53,7 +53,7 @@ def main():
                               "Pickle", "SQLite", "ARFF", "GCT", "RMarkdown", "JupyterNotebook"]
     parser.add_argument("-i", "--input_files", nargs="+", help="List of files that will be merged together. "
                                                              "Files must have appropriate extensions to be recognized properly.")
-    parser.add_argument("-f", "input_files_types", default=[],
+    parser.add_argument("-f", "--input_files_types", nargs="*", default=[],
                         help="list of file types corresponding to files_to_merge. If the list is empty, types will be inferred from file extensions. If the list has one value, that will be the type of every file in files_to_merge. If the list has the same number of items as files_to_merge, the types will correspond to the files in files_to_merge.")
     parser.add_argument("-o", "--output_file", help="File path to which results are exported")
     parser.add_argument("-t", "--output_file_type",
