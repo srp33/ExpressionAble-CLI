@@ -84,8 +84,8 @@ use the `--all_columns` flag.
 Typing `merge -h` or `eamerge -h` will bring up the help menu for information on how to merge data files of various types together.
 
 ```bash
-~$ merge -h
-usage: merge [-h] [-i INPUT_FILES [INPUT_FILES ...]] [-o OUTPUT_FILE]
+~$  merge [-h] [-i INPUT_FILES [INPUT_FILES ...]]
+             [-f [INPUT_FILES_TYPES [INPUT_FILES_TYPES ...]]] [-o OUTPUT_FILE]
              [-t File_Type] [-g] [-c ON_COLUMN] [--how HOW]
 
 Merge data files of various types into a single file!
@@ -95,6 +95,13 @@ optional arguments:
   -i INPUT_FILES [INPUT_FILES ...], --input_files INPUT_FILES [INPUT_FILES ...]
                         List of files that will be merged together. Files must
                         have appropriate extensions to be recognized properly.
+  -f [INPUT_FILES_TYPES [INPUT_FILES_TYPES ...]], --input_files_types [INPUT_FILES_TYPES [INPUT_FILES_TYPES ...]]
+                        list of file types corresponding to files_to_merge. If
+                        the list is empty, types will be inferred from file
+                        extensions. If the list has one value, that will be
+                        the type of every file in files_to_merge. If the list
+                        has the same number of items as files_to_merge, the
+                        types will correspond to the files in files_to_merge.
   -o OUTPUT_FILE, --output_file OUTPUT_FILE
                         File path to which results are exported
   -t File_Type, --output_file_type File_Type
@@ -108,6 +115,7 @@ optional arguments:
                         Merge files on a specific column
   --how HOW             Type of merge to perform. Options are left, right,
                         inner, or outer, with inner being default behavior.
+
 ```
 
 
