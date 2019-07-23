@@ -1,8 +1,11 @@
 # expressionable-cli
-The official command-line interface for the [expressionable](https://github.com/srp33/expressionable) Python module.
+
+This is the official repository for the `expressionable` command-line tool. It is a command-line interface for the [expressionable](https://github.com/srp33/expressionable) Python module.
+
 From the command-line you can easily take advantage of ExpressionAble's features, such as:
+
 * Transformation of tabular data sets from one format to another.
-* Querying large data sets to filter out useful data.
+* Querying large data sets to extract useful data.
 * Selection of additional columns/features to include in the resulting data set.
 * Option to gzip resulting data sets, as well as the ability to read gzipped files.
 * Merging multiple data files of various types into a single file. 
@@ -14,8 +17,11 @@ pip3 install expressionable-cli
 ```
 
 ## Basic Use
+
 To view instructions for use at any time, simply type the command `expressionable --help` or `ea --help` into the terminal at any time.
+
 Doing so will bring up the following:
+
 ```bash
 $ expressionable --help
 usage: expressionable [-h] [-i File_Type] [-o File_Type] [-t] [-f "FILTER"]
@@ -59,19 +65,19 @@ optional arguments:
   -s SET_INDEX, --set_index SET_INDEX
                         Sets the given column to become the index column,
                         where appropriate.
-
 ```
+
 There are only two required arguments when using the `expressionable` command: the path to the file you wish to read,
 and the path to a file you wish to produce. For example, if you had an Excel file called "input_file.xlsx" and you 
-simply wanted to convert it to a TSV file called "output_file.tsv", you would enter 
+ wanted to convert it to a TSV file called "output_file.tsv", you would enter 
 `expressionable input_file.xlsx output_file.tsv` into the terminal to execute the conversion.
 
 ExpressionAble automatically infers both the format of the input file and the format of the file you wish to create, based
-on the extension on the file path. If for some reason the extensions are irregular or missing, you can specify the 
+on the file extension. If for some reason the extensions are irregular or missing, you can specify the 
 format of the input file using the `--input_file_type` flag, followed by the name of the file type,
 and specify the format of the output file using the `--output_file_type` flag, followed by the name of the file type.
 
-Applying filters during the transformation uses the `--filter` flag, followed by a string query in double quotations.
+To apply filters during the transformation, use the `--filter` flag, followed by a string query in double quotations.
 Syntax for such a query uses basic Python logical syntax, as shown by the following example:
 `--filter "ColumnName1 > 12.5 and (ColumnName2 == 'x' or ColumnName2 =='y')"`  
 
@@ -80,47 +86,10 @@ will appear in the output file. If you wish to include additional columns, you c
 followed by a list of comma-separated column names. If you wish to include all columns in the output, you can simply
 use the `--all_columns` flag.
 
-## Merging Files
-Typing `merge -h` or `eamerge -h` will bring up the help menu for information on how to merge data files of various types together.
-
-```bash
-~$  merge [-h] [-i INPUT_FILES [INPUT_FILES ...]]
-             [-f [INPUT_FILES_TYPES [INPUT_FILES_TYPES ...]]] [-o OUTPUT_FILE]
-             [-t File_Type] [-g] [-c ON_COLUMN] [--how HOW]
-
-Merge data files of various types into a single file!
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -i INPUT_FILES [INPUT_FILES ...], --input_files INPUT_FILES [INPUT_FILES ...]
-                        List of files that will be merged together. Files must
-                        have appropriate extensions to be recognized properly.
-  -f [INPUT_FILES_TYPES [INPUT_FILES_TYPES ...]], --input_files_types [INPUT_FILES_TYPES [INPUT_FILES_TYPES ...]]
-                        list of file types corresponding to files_to_merge. If
-                        the list is empty, types will be inferred from file
-                        extensions. If the list has one value, that will be
-                        the type of every file in files_to_merge. If the list
-                        has the same number of items as files_to_merge, the
-                        types will correspond to the files in files_to_merge.
-  -o OUTPUT_FILE, --output_file OUTPUT_FILE
-                        File path to which results are exported
-  -t File_Type, --output_file_type File_Type
-                        Type of file to which results are exported. If not
-                        specified, file type will be determined by the file
-                        extension given. Available choices are: CSV, TSV,
-                        JSON, Excel, HDF5, Parquet, MsgPack, Stata, Pickle,
-                        SQLite, ARFF, GCT, RMarkdown, JupyterNotebook
-  -g, --gzip            Gzips the output file
-  -c ON_COLUMN, --on_column ON_COLUMN
-                        Merge files on a specific column
-  --how HOW             Type of merge to perform. Options are left, right,
-                        inner, or outer, with inner being default behavior.
-
-```
-
-
 ## Currently Supported Formats
+
 #### Input Formats:
+
 * CSV
 * TSV
 * JSON
@@ -135,11 +104,15 @@ optional arguments:
 * GCT
 * GCTX
 * PDF
-* StarReads
-* Kallisto
-* GEO
+* Gene Expression Omnibus
+* Kallisto (RNA-Sequencing)
+* Salmon (RNA-Sequencing)
+* STAR (RNA-Sequencing)
+* HT-Seq (RNA-Sequencing)
+* CBio Portal (RNA expression format)
 
 #### Output Formats:
+
 * CSV 
 * TSV
 * JSON
@@ -152,5 +125,5 @@ optional arguments:
 * SQLite 
 * ARFF 
 * GCT 
-* RMarkdown 
-* JupyterNotebook
+* RMarkdown notebook
+* Jupyter notebook
