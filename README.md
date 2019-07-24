@@ -1,4 +1,14 @@
-# expressionable-cli
+# ExpressionAble-CLI
+
+### Background
+
+**The context**: Gene-expression levels help in determining cellular function. To understand these roles, scientists have performed thousands of gene-expression studies using microarray assays and next-generation sequencing. Such data are typically stored in tabular files (with rows and columns).
+
+**The problem**: Different functional-genomics repositories and preprocessing tools store gene-expression data in a cacophony of file formats. Analysis tools (such as Python, R, and Excel) do not support all these formats natively. It is time consuming and labor intensive for bioinformaticians to translate data between file formats and identify samples that match specific criteria.
+
+**The solution**: We developed the ExpressionAble tool to reduce the time from data acquisition to analysis for researchers studying gene expression. This tool can help researchers more easily work with their own data as well as the immense gene-expression resources in public databases.
+
+### expressionable command-line tool
 
 This is the official repository for the `expressionable` command-line tool. It is a command-line interface for the [expressionable](https://github.com/srp33/expressionable) Python module.
 
@@ -10,13 +20,13 @@ From the command-line you can easily take advantage of ExpressionAble's features
 * Option to gzip resulting data sets, as well as the ability to read gzipped files.
 * Merging multiple data files of various types into a single file. 
 
-## Install
+### Install
 
 ```bash
 pip3 install expressionable-cli
 ```
 
-## Basic Use
+### Basic Use
 
 To view instructions for use at any time, simply type the command `expressionable --help` or `ea --help` into the terminal at any time.
 
@@ -86,13 +96,12 @@ will appear in the output file. If you wish to include additional columns, you c
 followed by a list of comma-separated column names. If you wish to include all columns in the output, you can simply
 use the `--all_columns` flag.
 
-## Currently Supported Formats
+### Currently Supported Formats
 
-#### Input Formats:
+##### Input Formats:
 
 * CSV
 * TSV (samples as rows, variables as columns)
-* Transposed TSV (variables as rows, samples as columns)
 * JSON
 * Excel
 * HDF5
@@ -112,7 +121,7 @@ use the `--all_columns` flag.
 * HT-Seq (RNA-Sequencing)
 * CBio Portal (RNA expression format)
 
-#### Output Formats:
+##### Output Formats:
 
 * CSV 
 * TSV
@@ -128,3 +137,7 @@ use the `--all_columns` flag.
 * GCT 
 * RMarkdown notebook
 * Jupyter notebook
+
+### Python module
+
+As an alternative to this tool, you can use the [Python module](https://github.com/srp33/ExpressionAble) to programmatically convert between file formats.
