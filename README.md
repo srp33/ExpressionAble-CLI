@@ -91,7 +91,8 @@ use the `--all_columns` flag.
 #### Input Formats:
 
 * CSV
-* TSV
+* TSV (samples as rows, variables as columns)
+* Transposed TSV (variables as rows, samples as columns)
 * JSON
 * Excel
 * HDF5
